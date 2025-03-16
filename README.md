@@ -455,7 +455,8 @@ public class GaussJordan4 {
 
 ![alt text](image-4.png)
 
-    <h2 align = "center"> <font font face = "forte"> <a name="Seidel">  3.- Gauss-Seidel </h2></a>
+
+<h2 align = "center"> <font font face = "forte"> <a name="Seidel">  3.- Gauss-Seidel </h2></a>
 
 <h3> <font font face = "arial"> DESCRIPCIÓN: </h3>
 
@@ -473,4 +474,239 @@ El método de Gauss-Seidel es una técnica iterativa utilizada para resolver sis
 <h5>Convergencia:</h5><li> Comprobar si el método converge hacia la solución del sistema de ecuaciones lineales.</li>
 <li>Ajustar los parámetros, como la elección inicial y la precisión, si es necesario para mejorar la convergencia.</li>
 <h5>Obtencion de soluciones:</h5> <li>Una vez que se alcanza la convergencia, las soluciones obtenidas en la última iteración se consideran como las soluciones aproximadas del sistema de ecuaciones lineales.</li>
+   
+<h5> <font font face = "arial"> <b> <i> Ejemplo 1: </i> </b> </h5>
 
+public class GausseSeidel1 {
+
+    public static void main(String[] args) {
+        double[][] A = {
+                {4.0, -1.0, 0.0},
+                {-1.0, 4.0, -1.0},
+                {0.0, -1.0, 4.0}
+        };
+        double[] b = {1, -4,5};
+        double[] x = gaussSeidel(A, b);
+        for (int i = 0; i < x.length; i++) {
+            System.out.println("x[" + i + "] = " + x[i]);
+        }
+        
+        System.out.println("Me da ese redondeo por la tolerancia de los puntos decimales. ");
+
+    }
+
+    public static double[] gaussSeidel(double[][] A, double[] b) {
+        int n = A.length;
+        double[] x = new double[n];
+        double[] newX = new double[n];
+        int max = 100;
+        double epsilon = 1e-50;
+
+        for (int iter = 0; iter < max; iter++) {
+            for (int i = 0; i < n; i++) {
+                newX[i] = b[i];
+                for (int j = 0; j < n; j++) {
+                    if (j != i) {
+                        newX[i] -= A[i][j] * x[j];
+                    }
+                }
+                newX[i] /= A[i][i];
+            }
+
+            boolean stop = true;
+            for (int i = 0; i < n; i++) {
+                if (Math.abs(newX[i] - x[i]) > epsilon) {
+                    stop = false;
+                    break;
+                }
+            }
+
+            if (stop) {
+                break;
+            }
+
+            System.arraycopy(newX, 0, x, 0, n);
+           
+        }
+        return x;
+    }}
+
+
+![alt text](image-5.png)
+
+    
+<h5> <font font face = "arial"> <b> <i> Ejemplo 2: </i> </b> </h5>
+
+public class GausseSeidel2 {
+
+    public static void main(String[] args) {
+        double[][] A = {
+            {2, 1, -1},
+            {5, 2, 2},
+            {3, 1, 1}
+        };
+        double[] b = {1, -4,5};
+        double[] x = gaussSeidel(A, b);
+        for (int i = 0; i < x.length; i++) {
+            System.out.println("x[" + i + "] = " + x[i]);
+        }
+
+    }
+
+    public static double[] gaussSeidel(double[][] A, double[] b) {
+        int n = A.length;
+        double[] x = new double[n];
+        double[] newX = new double[n];
+        int max = 100;
+        double epsilon = 1e-50;
+
+        for (int iter = 0; iter < max; iter++) {
+            for (int i = 0; i < n; i++) {
+                newX[i] = b[i];
+                for (int j = 0; j < n; j++) {
+                    if (j != i) {
+                        newX[i] -= A[i][j] * x[j];
+                    }
+                }
+                newX[i] /= A[i][i];
+            }
+
+            boolean stop = true;
+            for (int i = 0; i < n; i++) {
+                if (Math.abs(newX[i] - x[i]) > epsilon) {
+                    stop = false;
+                    break;
+                }
+            }
+
+            if (stop) {
+                break;
+            }
+
+            System.arraycopy(newX, 0, x, 0, n);
+           
+        }
+        return x;
+    }}
+
+
+
+![alt text](image-6.png)
+
+    
+
+<h5> <font font face = "arial"> <b> <i> Ejemplo 3: </i> </b> </h5>
+
+public class GausseSeidel3 {
+
+    public static void main(String[] args) {
+        double[][] A = {
+            {5, 7, 1},
+            {6, 4, 2},
+            {2, 3, 1}
+        };
+        double[] b = {4, 1,3};
+        double[] x = gaussSeidel(A, b);
+        for (int i = 0; i < x.length; i++) {
+            System.out.println("x[" + i + "] = " + x[i]);
+        }
+
+    }
+
+    public static double[] gaussSeidel(double[][] A, double[] b) {
+        int n = A.length;
+        double[] x = new double[n];
+        double[] newX = new double[n];
+        int max = 100;
+        double epsilon = 1e-50;
+
+        for (int iter = 0; iter < max; iter++) {
+            for (int i = 0; i < n; i++) {
+                newX[i] = b[i];
+                for (int j = 0; j < n; j++) {
+                    if (j != i) {
+                        newX[i] -= A[i][j] * x[j];
+                    }
+                }
+                newX[i] /= A[i][i];
+            }
+
+            boolean stop = true;
+            for (int i = 0; i < n; i++) {
+                if (Math.abs(newX[i] - x[i]) > epsilon) {
+                    stop = false;
+                    break;
+                }
+            }
+
+            if (stop) {
+                break;
+            }
+
+            System.arraycopy(newX, 0, x, 0, n);
+           
+        }
+        return x;
+    }}
+
+
+
+![alt text](image-7.png)
+
+
+
+<h5> <font font face = "arial"> <b> <i> Ejemplo 4: </i> </b> </h5>
+
+public class GausseSeidel4 {
+
+    public static void main(String[] args) {
+        double[][] A = {
+            {1, 7, 2},
+            {3, 5, 6},
+            {3, 4, 8}
+        };
+        double[] b = {2, -1,7};
+        double[] x = gaussSeidel(A, b);
+        for (int i = 0; i < x.length; i++) {
+            System.out.println("x[" + i + "] = " + x[i]);
+        }
+    }
+
+    public static double[] gaussSeidel(double[][] A, double[] b) {
+        int n = A.length;
+        double[] x = new double[n];
+        double[] newX = new double[n];
+        int max = 100;
+        double epsilon = 1e-50;
+
+        for (int iter = 0; iter < max; iter++) {
+            for (int i = 0; i < n; i++) {
+                newX[i] = b[i];
+                for (int j = 0; j < n; j++) {
+                    if (j != i) {
+                        newX[i] -= A[i][j] * x[j];
+                    }
+                }
+                newX[i] /= A[i][i];
+            }
+
+            boolean stop = true;
+            for (int i = 0; i < n; i++) {
+                if (Math.abs(newX[i] - x[i]) > epsilon) {
+                    stop = false;
+                    break;
+                }
+            }
+
+            if (stop) {
+                break;
+            }
+
+            System.arraycopy(newX, 0, x, 0, n);
+           
+        }
+        return x;
+    }}
+
+
+![alt text](image-8.png)
