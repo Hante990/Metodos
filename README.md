@@ -305,9 +305,7 @@ public class GaussJordan {
     }}
 
 
-
-![1](https://github.com/Hante990/Tema-3/assets/107586879/dfa61392-6b67-4e1f-b58e-dc3cb3e00b85)
-
+![alt text](image.png)
    
 
  <h5> <font font face = "arial"> <b> <i> Ejemplo 2: </i> </b> </h5>
@@ -352,8 +350,7 @@ public class GaussJordan2 {
 
 
 
-![2-4](https://github.com/Hante990/Tema-3/assets/107586879/5597f8c7-f6ee-4cae-8587-9286ec540628)
-
+![alt text](image-2.png)
 
 <h5> <font font face = "arial"> <b> <i> Ejemplo 3: </i> </b> </h5>
 
@@ -411,8 +408,7 @@ public class GaussJordan3 {
     }}
 
 
-![2-1](https://github.com/Hante990/Tema-3/assets/107586879/9f2e75da-ccd4-46f8-8ce8-13d6413f674a)
-
+![alt text](image-3.png)
 
     
 <h5> <font font face = "arial"> <b> <i> Ejemplo 4: </i> </b> </h5>
@@ -457,8 +453,24 @@ public class GaussJordan4 {
 
 
 
-![2-2](https://github.com/Hante990/Tema-3/assets/107586879/0fd5353d-3a28-49a8-ae74-912cc342b4c6)
+![alt text](image-4.png)
 
+    <h2 align = "center"> <font font face = "forte"> <a name="Seidel">  3.- Gauss-Seidel </h2></a>
 
-    
+<h3> <font font face = "arial"> DESCRIPCIÓN: </h3>
+
+El método de Gauss-Seidel es una técnica iterativa utilizada para resolver sistemas de ecuaciones lineales. En este método, se mejora el método de Jacobi al utilizar las soluciones más recientes a medida que se calculan, en lugar de esperar a completar una iteración completa. Esto significa que las soluciones se actualizan en cada paso, lo que puede acelerar la convergencia del método.
+
+<h3> <font font face = "arial">Pasos de Gauss-Seidel:</h3>
+<h5>Inicialización de las Variables: </h5> Se comienza con una estimación inicial de las soluciones del sistema de ecuaciones lineales.
+<h5>Iteración:</h5>Para cada ecuación en el sistema:
+<li>Utilizar los valores más recientes de las variables ya calculadas.</li>
+<li>Resolver la ecuación para encontrar una nueva estimación de la variable.</li>
+<li>Actualizar el valor de la variable con la nueva estimación.</li>
+<li>Repetir este proceso para todas las ecuaciones del sistema en cada iteración.</li>
+<h5>Criterio de parada:</h5><li>Establecer un criterio de convergencia, como una tolerancia o un número máximo de iteraciones.</li>
+<li>Verificar si se ha alcanzado la precisión deseada o el número máximo de iteraciones.</li>
+<h5>Convergencia:</h5><li> Comprobar si el método converge hacia la solución del sistema de ecuaciones lineales.</li>
+<li>Ajustar los parámetros, como la elección inicial y la precisión, si es necesario para mejorar la convergencia.</li>
+<h5>Obtencion de soluciones:</h5> <li>Una vez que se alcanza la convergencia, las soluciones obtenidas en la última iteración se consideran como las soluciones aproximadas del sistema de ecuaciones lineales.</li>
 
