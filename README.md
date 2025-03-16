@@ -260,3 +260,205 @@ El método de Gauss-Jordan es una variante del método de eliminación gaussiana
 <h5>Reducir la Matriz a su Forma Escalonada Reducida: </h5>Se continúa escalonando la matriz hasta obtener una forma escalonada reducida, donde la parte de los coeficientes de las variables se convierte en una matriz identidad.
 <h5>Obtener las Soluciones: </h5>Una vez se ha alcanzado la forma escalonada reducida, se leen las soluciones directamente de la matriz identidad. Cada fila de la matriz identidad corresponde a una variable del sistema de ecuaciones.
 <h5>Verificar las Soluciones: </h5> Es importante comprobar las soluciones obtenidas sustituyéndolas en las ecuaciones originales para asegurarse de que satisfacen todas las ecuaciones del sistema.
+
+   
+<h5> <font font face = "arial"> <b> <i> Ejemplo 1: </i> </b> </h5>
+
+package com.mycompany.gauss.jordan;
+
+public class GaussJordan {
+
+    public static void main(String[] args) {
+       System.out.println("GAUSS-JORDAN");
+        double[][] matriz = 
+        {   {4,2,-2,1},
+            {10,4,4,-4},
+            {6,2,2,5}    };
+        double[][] resultados = operaciones(matriz);
+        Resultados(resultados);
+    }
+    public static double[][] operaciones(double[][] matriz) {
+        int fila = matriz.length;
+        int columna = matriz[0].length;
+        for (int i = 0; i < fila; i++) {
+            double pivote = matriz[i][i];
+            for (int j = i + 1; j < columna; j++) {
+                matriz[i][j] /= pivote;
+            }
+            matriz[i][i] = 1;
+            for (int j = 0; j < fila; j++) {
+                if (i != j) {
+                    double epala = matriz[j][i];
+                    for (int k = i; k < columna; k++) {
+                        matriz[j][k] -= epala * matriz[i][k];
+                    }
+                }
+            }
+        }
+        return matriz;
+    }
+    public static void Resultados(double[][] matriz) {
+        System.out.println("Los resultados soooon: ");
+        System.out.println("X = " + matriz[0][3] + " :)");
+        System.out.println("Y = " + matriz[1][3] + " :)");
+        System.out.println("Y = " + matriz[2][3] + " :)");
+    }}
+
+
+
+![1](https://github.com/Hante990/Tema-3/assets/107586879/dfa61392-6b67-4e1f-b58e-dc3cb3e00b85)
+
+   
+
+ <h5> <font font face = "arial"> <b> <i> Ejemplo 2: </i> </b> </h5>
+
+public class GaussJordan2 {
+
+    public static void main(String[] args) {
+        System.out.println("GAUSS-JORDAN");
+        double[][] matriz = 
+        {   {2,1,-1,1},
+            {5,2,2,-4},
+            {3,1,1,5}    };
+        double[][] resultados = operaciones(matriz);
+        Resultados(resultados);
+    }
+    public static double[][] operaciones(double[][] matriz) {
+        int fila = matriz.length;
+        int columna = matriz[0].length;
+        for (int i = 0; i < fila; i++) {
+            double pivote = matriz[i][i];
+            for (int j = i + 1; j < columna; j++) {
+                matriz[i][j] /= pivote;
+            }
+            matriz[i][i] = 1;
+            for (int j = 0; j < fila; j++) {
+                if (i != j) {
+                    double epala = matriz[j][i];
+                    for (int k = i; k < columna; k++) {
+                        matriz[j][k] -= epala * matriz[i][k];
+                    }
+                }
+            }
+        }
+        return matriz;
+    }
+    public static void Resultados(double[][] matriz) {
+        System.out.println("Los resultados soooon: ");
+        System.out.println("X = " + matriz[0][3] + " :)");
+        System.out.println("Y = " + matriz[1][3] + " :)");
+        System.out.println("Y = " + matriz[2][3] + " :)");
+    }}
+
+
+
+![2-4](https://github.com/Hante990/Tema-3/assets/107586879/5597f8c7-f6ee-4cae-8587-9286ec540628)
+
+
+<h5> <font font face = "arial"> <b> <i> Ejemplo 3: </i> </b> </h5>
+
+import java.util.Scanner;
+
+public class GaussJordan3 {
+
+    public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+      
+        System.out.println("Ingrese el tamaño de la matriz cuadrada (n x n): ");
+        int n = scanner.nextInt();
+        
+        double[][] matriz = new double[n][n+1];
+        
+        System.out.println("Ingrese los elementos de la matriz extendida (separados por espacios y por fila): ");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n+1; j++) {
+                matriz[i][j] = scanner.nextDouble();
+            }
+        }
+        
+        double[][] resultados = operaciones(matriz);
+        Resultados(resultados);
+        
+        scanner.close();
+    }
+
+    public static double[][] operaciones(double[][] matriz) {
+        int fila = matriz.length;
+        int columna = matriz[0].length;
+        for (int i = 0; i < fila; i++) {
+            double pivote = matriz[i][i];
+            for (int j = i + 1; j < columna; j++) {
+                matriz[i][j] /= pivote;
+            }
+            matriz[i][i] = 1;
+            for (int j = 0; j < fila; j++) {
+                if (i != j) {
+                    double epala = matriz[j][i];
+                    for (int k = i; k < columna; k++) {
+                        matriz[j][k] -= epala * matriz[i][k];
+                    }
+                }
+            }
+        }
+        return matriz;
+    }
+
+    public static void Resultados(double[][] matriz) {
+        System.out.println("Los resultados son: ");
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.println((char)('X' + i) + " = " + matriz[i][matriz[i].length - 1]);
+        }
+    }}
+
+
+![2-1](https://github.com/Hante990/Tema-3/assets/107586879/9f2e75da-ccd4-46f8-8ce8-13d6413f674a)
+
+
+    
+<h5> <font font face = "arial"> <b> <i> Ejemplo 4: </i> </b> </h5>
+
+public class GaussJordan4 {
+
+    public static void main(String[] args) {
+        System.out.println("GAUSS-JORDAN");
+        double[][] matriz = 
+        {   {4,-2,2,1},
+            {10,4,4,-4},
+            {3,1,1,5}    };
+        double[][] resultados = operaciones(matriz);
+        Resultados(resultados);
+    }
+    public static double[][] operaciones(double[][] matriz) {
+        int fila = matriz.length;
+        int columna = matriz[0].length;
+        for (int i = 0; i < fila; i++) {
+            double pivote = matriz[i][i];
+            for (int j = i + 1; j < columna; j++) {
+                matriz[i][j] /= pivote;
+            }
+            matriz[i][i] = 1;
+            for (int j = 0; j < fila; j++) {
+                if (i != j) {
+                    double epala = matriz[j][i];
+                    for (int k = i; k < columna; k++) {
+                        matriz[j][k] -= epala * matriz[i][k];
+                    }
+                }
+            }
+        }
+        return matriz;
+    }
+    public static void Resultados(double[][] matriz) {
+        System.out.println("Los resultados soooon: ");
+        System.out.println("X = " + matriz[0][3] + " :)");
+        System.out.println("Y = " + matriz[1][3] + " :)");
+        System.out.println("Y = " + matriz[2][3] + " :)");
+    }}
+
+
+
+![2-2](https://github.com/Hante990/Tema-3/assets/107586879/0fd5353d-3a28-49a8-ae74-912cc342b4c6)
+
+
+    
+
