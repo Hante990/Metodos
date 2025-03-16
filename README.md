@@ -884,8 +884,7 @@ public class Jacobi1 {
 
 
 
-![ee1](https://github.com/Hante990/Tema-3/assets/107586879/68e40cb6-5a78-4667-a24c-0378d8c6f12e)
-
+![alt text](image-9.png)
 
     
 <h5> <font font face = "arial"> <b> <i> Ejemplo 2: </i> </b> </h5>
@@ -951,8 +950,7 @@ public class JacobiMethod {
 
 
 
-![ee2](https://github.com/Hante990/Tema-3/assets/107586879/3ec8cab9-5632-4255-9534-3d542ecb27ea)
-
+![alt text](image-10.png)
 
     
 <h5> <font font face = "arial"> <b> <i> Ejemplo 3: </i> </b> </h5>
@@ -1016,8 +1014,7 @@ public class JacobiMethod {
     }}
 
 
-![ee3](https://github.com/Hante990/Tema-3/assets/107586879/276fab49-748c-4641-af03-8c3b21f326ec)
-
+![alt text](image-11.png)
 
 
     
@@ -1082,8 +1079,7 @@ public class JacobiMethod {
     }}
 
 
-![ee4](https://github.com/Hante990/Tema-3/assets/107586879/b2875573-1064-4780-8b5a-ced76725dca7)
-
+![alt text](image-12.png)
 
 
 Realizado por:
