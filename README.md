@@ -1084,3 +1084,4 @@ public class JacobiMethod {
 
 Realizado por:
   <li>Diego Alonso Fernández Delagadillo</li>
+   <li>Adriana Jamileth Mendoza Ortiz</li>
