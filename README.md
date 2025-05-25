@@ -2,46 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>📘 Tema 6: Ecuaciones Diferenciales Ordinarias (EDOs)</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      margin: 40px;
-      background-color: #f5f5f5;
-      color: #333;
-    }
-    h1, h2, h3 {
-      color: #0073e6;
-    }
-    code, pre {
-      background-color: #eee;
-      padding: 6px;
-      border-radius: 5px;
-    }
-    pre {
-      overflow-x: auto;
-    }
-    ul {
-      padding-left: 1.2em;
-    }
-    .subtema {
-      margin-top: 40px;
-    }
-  </style>
 </head>
 <body>
 
-<h1>📑 Índice - Tema 6</h1>
+<h1>📘 Tema 6: Resolución Numérica de Ecuaciones Diferenciales Ordinarias (EDOs)</h1>
+
+<p>Este tema aborda los métodos numéricos utilizados para resolver ecuaciones diferenciales ordinarias (EDOs), esenciales para modelar fenómenos físicos, químicos, biológicos e ingenieriles. Se estudian métodos de un paso, múltiples pasos y sistemas de EDOs.</p>
+
+<h1>📑 Índice</h1>
 <ul>
   <li><a href="#metodos-un-paso">6.1 ⚙️ Métodos de Un Paso</a></li>
   <li><a href="#metodos-multiples-pasos">6.2 ⏩ Métodos de Pasos Múltiples</a></li>
   <li><a href="#sistemas-edos">6.3 🔄 Sistemas de Ecuaciones Diferenciales Ordinarias</a></li>
 </ul>
-
-<h1>📘 Tema 6: Resolución Numérica de Ecuaciones Diferenciales Ordinarias (EDOs)</h1>
-
-<p>Este tema aborda los métodos numéricos utilizados para resolver ecuaciones diferenciales ordinarias (EDOs), esenciales para modelar fenómenos físicos, químicos, biológicos e ingenieriles. Se estudian métodos de un paso, múltiples pasos y sistemas de EDOs.</p>
 
 <div class="subtema">
 <h2 id="metodos-un-paso">6.1 ⚙️ Métodos de Un Paso</h2>
