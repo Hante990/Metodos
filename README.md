@@ -80,3 +80,29 @@ public static double bisection(double a, double b, double error) {
 public static double f(double x) {
     return x * x - 4;
 }
+```
+### 📐 Método de la Falsa Posición
+
+**Descripción:**  
+También conocido como "regula falsi", este método mejora la convergencia del método de bisección utilizando una aproximación lineal entre los puntos del intervalo.
+
+**Pasos Generales:**
+1. Definir un intervalo `[a, b]` donde `f(a) * f(b) < 0`.
+2. Calcular el punto `c` usando la fórmula de interpolación lineal.
+3. Evaluar `f(c)` y determinar el nuevo subintervalo.
+4. Repetir hasta que el error sea menor al permitido.
+
+**Código en Java:**
+```java
+// Falsa Posición en Java
+public static double falsePosition(double a, double b, double error) {
+    double c = a;
+    while (Math.abs(f(c)) > error) {
+        c = (a * f(b) - b * f(a)) / (f(b) - f(a));
+        if (f(c) == 0) break;
+        if (f(a) * f(c) < 0) b = c;
+        else a = c;
+    }
+    return c;
+}
+```
