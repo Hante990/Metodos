@@ -31,7 +31,7 @@ Cada rama puede ser explorada individualmente para consultar los ejercicios corr
 ## 💡 Objetivos del Repositorio
 
 - Reforzar el aprendizaje práctico de los métodos numéricos.
-- Proveer una referencia de implementación en lenguaje de programación (ej. Python, C++, MATLAB, etc.).
+- Proveer una referencia de implementación en lenguaje de programación.
 - Fomentar la organización por temas y la colaboración a través de Git.
 
 ---
