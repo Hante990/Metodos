@@ -238,8 +238,9 @@ public class SecantMethod {
         return x * x - 4;
     }
 }
-![alt text](image-2.png)
 ```
+![alt text](image-2.png)
+
 ### ⚡ Método de Newton-Raphson <a name="metodo-de-newton-raphson"></a>
 
 **Descripción:**  
