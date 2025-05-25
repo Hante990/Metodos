@@ -68,19 +68,45 @@ El método de bisección es una técnica iterativa que permite encontrar una ra�
 **Código en Java:**
 ```java
 // Bisección en Java
-public static double bisection(double a, double b, double error) {
-    while ((b - a) / 2 > error) {
-        double c = (a + b) / 2;
-        if (f(c) == 0) return c;
-        if (f(a) * f(c) < 0) b = c;
-        else a = c;
+public class BisectionMethod {
+    public static void main(String[] args) {
+        try {
+            double root = bisection(0, 3, 1e-6);
+            System.out.println("La raíz encontrada es: " + String.format("%.3f", root)); // Trunca a 3 decimales
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
-    return (a + b) / 2;
-}
-public static double f(double x) {
-    return x * x - 4;
+
+    public static double bisection(double a, double b, double error) {
+        if (f(a) * f(b) >= 0) {
+            throw new IllegalArgumentException("La función debe tener signos opuestos en los extremos del intervalo");
+        }
+        
+        while (Math.abs(b - a) > error) {
+            double c = (a + b) / 2;
+            double fc = f(c);
+            
+            if (Math.abs(fc) < 1e-12) {
+                return c;
+            }
+            
+            if (f(a) * fc < 0) {
+                b = c;
+            } else {
+                a = c;
+            }
+        }
+        return (a + b) / 2;
+    }
+
+    public static double f(double x) {
+        return x * x - 4;
+    }
 }
 ```
+![alt text](image.png)
+
 ### 📐 Método de la Falsa Posición <a name="metodo-de-la-falsa-posicion"></a>
 
 **Descripción:**  
@@ -95,17 +121,55 @@ También conocido como "regula falsi", este método mejora la convergencia del m
 **Código en Java:**
 ```java
 // Falsa Posición en Java
-public static double falsePosition(double a, double b, double error) {
-    double c = a;
-    while (Math.abs(f(c)) > error) {
-        c = (a * f(b) - b * f(a)) / (f(b) - f(a));
-        if (f(c) == 0) break;
-        if (f(a) * f(c) < 0) b = c;
-        else a = c;
+public class FalsePositionMethod {
+
+    public static void main(String[] args) {
+        try {
+            // Llamamos al método falsePosition con intervalo [0, 3] y error máximo 1e-6
+            double root = falsePosition(0, 3, 1e-6);
+            // Mostramos el resultado formateado a 3 decimales
+            System.out.println("Raíz encontrada: " + String.format("%.3f", root));
+        } catch (IllegalArgumentException e) {
+            // Capturamos y mostramos errores de intervalo inválido
+            System.out.println("Error: " + e.getMessage());
+        }
     }
-    return c;
+
+    public static double falsePosition(double a, double b, double error) {
+        // Verificamos que haya cambio de signo en los extremos del intervalo
+        if (f(a) * f(b) >= 0) {
+            throw new IllegalArgumentException("La función no cambia de signo en [a, b].");
+        }
+
+        double c = a; // Inicializamos el punto de aproximación
+
+        // Iteramos hasta que el valor absoluto de f(c) sea menor que el error
+        while (Math.abs(f(c)) > error) {
+            // Calculamos el nuevo punto c usando la fórmula de la falsa posición
+            c = (a * f(b) - b * f(a)) / (f(b) - f(a));
+
+            // Si f(c) es prácticamente cero, terminamos la iteración
+            if (Math.abs(f(c)) < 1e-12) {
+                break;
+            }
+
+            // Actualizamos el intervalo según el signo de f(c)
+            if (f(a) * f(c) < 0) {
+                b = c; // La raíz está en el subintervalo izquierdo [a, c]
+            } else {
+                a = c; // La raíz está en el subintervalo derecho [c, b]
+            }
+        }
+
+        return c; // Devolvemos la aproximación final de la raíz
+    }
+
+    public static double f(double x) {
+        return x * x - 4; // Ejemplo: f(x) = x² - 4 (raíces en x=2 y x=-2)
+    }
 }
 ```
+![alt text](image-1.png)
 ### 📈 Método de la Secante  <a name="metodo-de-la-secante"></a>
 
 **Descripción:**  
@@ -120,15 +184,61 @@ El método de la secante es una variante del método de Newton-Raphson que no re
 **Código en Java:**
 ```java
 // Secante en Java
-public static double secant(double x0, double x1, double error) {
-    double x2;
-    do {
-        x2 = x1 - (f(x1) * (x1 - x0)) / (f(x1) - f(x0));
-        x0 = x1;
-        x1 = x2;
-    } while (Math.abs(f(x2)) > error);
-    return x2;
+public class SecantMethod {
+
+    public static void main(String[] args) {
+        try {
+            // Definimos las aproximaciones iniciales y el error tolerado
+            double x0 = 1.0;  // Primera aproximación inicial
+            double x1 = 3.0;  // Segunda aproximación inicial
+            double error = 1e-6;  // Tolerancia de error
+
+            // Llamamos al método de la secante
+            double root = secant(x0, x1, error);
+
+            // Mostramos el resultado formateado
+            System.out.println("Raíz encontrada: " + String.format("%.3f", root));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("Error matemático: " + e.getMessage());
+        }
+    }
+
+    public static double secant(double x0, double x1, double error) {
+        // Verificar que las aproximaciones iniciales sean distintas
+        if (x0 == x1) {
+            throw new IllegalArgumentException("x0 y x1 no pueden ser iguales.");
+        }
+
+        double x2;  // Almacenará la nueva aproximación
+
+        do {
+            // Calcular diferencia entre f(x1) y f(x0)
+            double denominator = f(x1) - f(x0);
+
+            // Evitar división por cero
+            if (Math.abs(denominator) < 1e-12) {
+                throw new ArithmeticException("División por cero (f(x1) ≈ f(x0)).");
+            }
+
+            // Fórmula de la secante: x2 = x1 - f(x1)*(x1 - x0)/(f(x1) - f(x0))
+            x2 = x1 - (f(x1) * (x1 - x0)) / denominator;
+
+            // Actualizar valores para la siguiente iteración
+            x0 = x1;
+            x1 = x2;
+
+        } while (Math.abs(f(x2)) > error);  // Continuar hasta alcanzar la precisión deseada
+
+        return x2;
+    }
+
+    public static double f(double x) {
+        return x * x - 4;
+    }
 }
+![alt text](image-2.png)
 ```
 ### ⚡ Método de Newton-Raphson <a name="metodo-de-newton-raphson"></a>
 
@@ -143,16 +253,50 @@ Este método iterativo utiliza la derivada de la función para converger más r�
 **Código en Java:**
 ```java
 // Newton-Raphson en Java
-public static double newtonRaphson(double x0, double error) {
-    double x1;
-    do {
-        x1 = x0 - f(x0) / df(x0);
-        x0 = x1;
-    } while (Math.abs(f(x1)) > error);
-    return x1;
-}
+public class NewtonRaphsonMethod {
 
-public static double df(double x) {
-    return 2 * x; // Derivada de f(x) = x² - 4
+    public static void main(String[] args) {
+        try {
+            double initialGuess = 2.5;  // Aproximación inicial (x₀)
+            double tolerance = 1e-6;    // Tolerancia de error (1×10⁻⁶)
+            
+            double root = newtonRaphson(initialGuess, tolerance);
+            
+            System.out.println("Raíz encontrada: " + String.format("%.6f", root));
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public static double newtonRaphson(double x0, double error) {
+        double x1;  // Almacenará la nueva aproximación
+        
+        do {
+            double derivative = df(x0);
+            
+            // Evitar división por cero (si la derivada es cero)
+            if (Math.abs(derivative) < 1e-12) {
+                throw new IllegalArgumentException("Derivada cero en x = " + x0);
+            }
+            
+            // Fórmula de Newton-Raphson: x₁ = x₀ - f(x₀)/f'(x₀)
+            x1 = x0 - f(x0) / derivative;
+            
+            // Actualizar la aproximación para la siguiente iteración
+            x0 = x1;
+            
+        } while (Math.abs(f(x1)) > error);  // Continuar hasta alcanzar la precisión deseada
+        
+        return x1;
+    }
+
+    public static double f(double x) {
+        return x * x - 4;
+    }
+
+    public static double df(double x) {
+        return 2 * x;
+    }
 }
 ```
+![alt text](image-3.png)
