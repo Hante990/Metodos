@@ -1,35 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>📘 Tema 6: Ecuaciones Diferenciales Ordinarias (EDOs)</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      margin: 40px;
-      background-color: #f5f5f5;
-      color: #333;
-    }
-    h1, h2, h3 {
-      color: #0073e6;
-    }
-    code, pre {
-      background-color: #eee;
-      padding: 6px;
-      border-radius: 5px;
-    }
-    pre {
-      overflow-x: auto;
-    }
-    ul {
-      padding-left: 1.2em;
-    }
-    .subtema {
-      margin-top: 40px;
-    }
-  </style>
-</head>
+
 <body>
 
 <h1>📘 Tema 6: Resolución Numérica de Ecuaciones Diferenciales Ordinarias (EDOs)</h1>
