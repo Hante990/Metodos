@@ -65,6 +65,36 @@ Esta fórmula se utiliza para calcular la derivada de una función en un punto u
 2. Aplicar la fórmula central:  
    `f'(x) ≈ (f(x + h) - f(x - h)) / (2h)`
 
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función f(x):
+        Retornar x^3 - 2*x + 1
+
+    Definir función dfExacta(x):
+        Retornar 3*x^2 - 2
+
+    Definir función derivadaTresPuntos(x, h):
+        Si h <= 0 entonces
+            Lanzar excepción "El tamaño del paso h debe ser positivo"
+        FinSi
+        Retornar [f(x + h) - f(x - h)] / (2*h)
+
+    En el programa principal:
+        Definir punto = 2.0
+        Definir h = 0.0001
+
+        Intentar:
+            derivada = derivadaTresPuntos(punto, h)
+            valorExacto = dfExacta(punto)
+            Imprimir "Derivada numérica (3 puntos):" derivada
+            Imprimir "Derivada exacta:" valorExacto
+            Imprimir "Error absoluto:" valor absoluto de (derivada - valorExacto)
+        Capturar excepción:
+            Imprimir "Error:" mensaje de la excepción
+Fin
+```
+
 **Código en Java:**
 ```java
 /**
@@ -110,6 +140,10 @@ public class DerivacionTresPuntos {
 ```
 ![alt text](image-13.png)
 
+**Casos de prueba**
+
+![alt text](image-3.png)
+
 ### 🔸 Fórmula de Cinco Puntos <a name="formula-de-cinco-puntos"></a>
 
 **Descripción:**  
@@ -119,6 +153,41 @@ Proporciona una mayor precisión que la fórmula de tres puntos, utilizando cinc
 1. Evaluar f(x - 2h), f(x - h), f(x + h), f(x + 2h).
 2. Aplicar la fórmula:
            f'(x) ≈ (-f(x + 2h) + 8f(x + h) - 8f(x - h) + f(x - 2h)) / (12h)
+
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función f(x):
+        Retornar exp(x) * sen(x)
+
+    Definir función dfExacta(x):
+        Retornar exp(x) * (sen(x) + cos(x))
+
+    Definir función redondear(valor, decimales):
+        factor = 10^decimales
+        Retornar redondear(valor * factor) / factor
+
+    Definir función derivadaCincoPuntos(x, h):
+        Si h <= 0 entonces
+            Lanzar excepción "h debe ser positivo"
+        FinSi
+        Retornar [ -f(x+2h) + 8*f(x+h) - 8*f(x-h) + f(x-2h) ] / (12*h)
+
+    En el programa principal:
+        Definir x = 2.0
+        Definir h = 0.01
+
+        Intentar:
+            derivadaAprox = redondear(derivadaCincoPuntos(x, h), 3)
+            derivadaExacta = redondear(dfExacta(x), 3)
+            Imprimir "Método de 5 puntos - f'(x) en x=" + x
+            Imprimir "Aproximación:" + derivadaAprox
+            Imprimir "Valor exacto:" + derivadaExacta
+            Imprimir "Error absoluto:" + redondear(valor absoluto de (derivadaAprox - derivadaExacta), 3)
+        Capturar excepción:
+            Imprimir "Error en cálculo:" + mensaje de la excepción
+Fin
+```
 
 **Código en Java:**
 ```java
@@ -173,6 +242,10 @@ public class DerivacionCincoPuntos {
 ```
 ![alt text](image.png)
 
+**Casos de prueba**
+
+![alt text](image-4.png)
+
 ### 📏 Regla de Simpson <a name="regla-de-simpson"></a>
 
 **Descripción:**  
@@ -182,6 +255,51 @@ Utiliza parábolas para aproximar el área bajo la curva, proporcionando mayor p
 1. Dividir el intervalo en n subintervalos pares.
 2. Aplicar:
 ∫f(x)dx ≈ (h/3) * [f(a) + 4Σf(xi impares) + 2Σf(xi pares) + f(b)]
+
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función f(x):
+        Retornar exp(-x^2)
+
+    Definir función redondear(valor, decimales):
+        factor = 10^decimales
+        Retornar redondear(valor * factor) / factor
+
+    Definir función simpson(a, b, n):
+        Si n no es par entonces
+            Lanzar excepción "El número de subintervalos n debe ser par"
+        FinSi
+
+        h = (b - a) / n
+        suma = f(a) + f(b)
+
+        Para i desde 1 hasta n-1 hacer:
+            x = a + i * h
+            Si i es par entonces
+                suma = suma + 2 * f(x)
+            Si no
+                suma = suma + 4 * f(x)
+            FinSi
+        FinPara
+
+        Retornar (h / 3) * suma
+
+    En el programa principal:
+        Definir a = 0.0
+        Definir b = 1.0
+        Definir n = 10
+
+        Intentar:
+            resultado = redondear(simpson(a, b, n), 5)
+            valorReal = 0.746824132812427
+            Imprimir "Aproximación de la integral:" resultado
+            Imprimir "Valor de referencia:" redondear(valorReal, 5)
+            Imprimir "Error absoluto:" redondear(valor absoluto de (resultado - valorReal), 5)
+        Capturar excepción:
+            Imprimir "Error:" mensaje de la excepción
+Fin
+```
 
 **Código en Java:**
 ```java
@@ -243,6 +361,10 @@ public class IntegracionSimpson {
 ```
 ![alt text](image-1.png)
 
+**Casos de prueba**
+
+![alt text](image-5.png)
+
 ### 📌 Cuadratura Gaussiana <a name="cuadratura-gaussiana"></a>
 
 **Descripción:**  
@@ -253,6 +375,44 @@ Método avanzado que utiliza pesos y nodos específicos para evaluar integrales 
 2. Usar nodos y pesos según el número de puntos (por ejemplo, 2 o 3).
 3. Calcular la integral como suma ponderada:
    ∫f(x)dx ≈ Σ wᵢ * f(xᵢ)
+
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función f(x):
+        Retornar exp(x)
+
+    Definir función redondear(valor, decimales):
+        factor = 10^decimales
+        Retornar redondear(valor * factor) / factor
+
+    Definir función cuadraturaGaussiana(a, b):
+        Definir arreglo x = [-1/√3, 1/√3]
+        Definir arreglo w = [1, 1]
+
+        integral = 0.0
+
+        Para i desde 0 hasta longitud(x)-1 hacer:
+            xi = ((b - a) * x[i] + (a + b)) / 2
+            integral = integral + w[i] * f(xi)
+        FinPara
+
+        Retornar ((b - a) / 2) * integral
+
+    En el programa principal:
+        Definir a = 0.0
+        Definir b = 1.0
+
+        Intentar:
+            resultado = redondear(cuadraturaGaussiana(a, b), 6)
+            valorReal = exp(1) - 1
+            Imprimir "Resultado por cuadratura gaussiana (2 puntos):" resultado
+            Imprimir "Valor exacto:" redondear(valorReal, 6)
+            Imprimir "Error absoluto:" redondear(valor absoluto de (resultado - valorReal), 6)
+        Capturar excepción:
+            Imprimir "Error:" mensaje de la excepción
+Fin
+```
 
 **Código en Java:**
 ```java
@@ -304,3 +464,7 @@ public class CuadraturaGaussiana {
 }
 ```
 ![alt text](image-2.png)
+
+**Casos de prueba**
+
+![alt text](image-6.png)
