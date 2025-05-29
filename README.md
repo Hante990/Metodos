@@ -135,6 +135,7 @@ public class Ejercicio1 {
 ![alt text](image-13.png)
 
 **Casos de prueba**
+
 ![alt text](image.png)
 
 ### 2. Gauss-Jordan
@@ -245,6 +246,7 @@ public class GaussJordan {
 ![alt text](image-14.png)
 
 **Casos de prueba**
+
 ![alt text](image-1.png)
 
 ### 3. Gauss-Seidel
@@ -363,6 +365,7 @@ public class GaussSeidel {
 ![alt text](image-15.png)
 
 **Casos de prueba**
+
 ![alt text](image-2.png)
 
 ### 4. Método de Jacobi
