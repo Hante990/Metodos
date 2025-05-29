@@ -65,6 +65,9 @@ public static double expTaylor(double x, int n) {
     return sum;
 }
 ```
+**Resultado**
+
+![image](https://github.com/user-attachments/assets/6735d681-7eb0-4ea9-bca6-f872efc33d37)
 
 ### 📉 Error de Aproximación <a name="error-de-aproximación"></a>
 
@@ -79,6 +82,9 @@ double b = 1.0000000;
 double result = (a - b) / (a + b);
 System.out.println("Resultado: " + result);
 ```
+**Resultado**
+
+![image](https://github.com/user-attachments/assets/271bb500-7e85-4067-a4d4-5fb3d4d1e8d0)
 
 ### 💥 Overflow <a name="overflow"></a>
 
@@ -96,3 +102,8 @@ public static long factorial(int n) {
     return result;
 }
 ```
+**Resultado**
+
+![image](https://github.com/user-attachments/assets/d4c2a1dd-055e-4da8-96d0-0c37b670f3d9)
+
+
