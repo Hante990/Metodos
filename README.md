@@ -69,16 +69,23 @@ Fin Función
 **Código java**
 ```java
 public static double expTaylor(double x, int n) {
+    // Inicializa la suma con el primer término de la serie (1)
     double sum = 1.0;
+    // Inicializa el término actual en 1 (que corresponde a x^0 / 0!)
     double term = 1.0;
 
+    // Ciclo desde i = 1 hasta n para calcular los siguientes términos de la serie
     for (int i = 1; i <= n; i++) {
+        // Calcula el siguiente término de la serie: term = term * (x / i)
+        // Esto equivale a calcular x^i / i! de forma incremental
         term *= x / i;
+        // Suma el término calculado a la suma total
         sum += term;
     }
 
+    // Retorna la suma que aproxima e^x usando la serie de Taylor con n términos
     return sum;
-}
+}       
 ```
 **Resultado**
 
@@ -105,9 +112,13 @@ Fin
 
 **Código Java**
 ```java
+// Define la variable 'a' con valor 1.0000001
 double a = 1.0000001;
+// Define la variable 'b' con valor 1.0000000
 double b = 1.0000000;
+// Calcula el resultado de la expresión (a - b) / (a + b)
 double result = (a - b) / (a + b);
+// Imprime el resultado en la consola
 System.out.println("Resultado: " + result);
 ```
 **Resultado**
@@ -134,11 +145,15 @@ Fin Función
 
 **Código Java**
 ```java
+// Calcula el factorial de un número entero n
 public static long factorial(int n) {
+    // Inicializa el resultado en 1 (factorial de 0 o 1)
     long result = 1;
+    // Itera desde 2 hasta n para multiplicar todos los enteros en ese rango
     for (int i = 2; i <= n; i++) {
-        result *= i;
+        result *= i;  // Multiplica el resultado actual por i
     }
+    // Retorna el valor del factorial calculado
     return result;
 }
 ```
