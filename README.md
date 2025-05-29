@@ -44,5 +44,5 @@ Dependiendo del tema y de los ejercicios, pueden utilizarse distintos lenguajes 
 
 ## 👨‍🏫 Autor
 
-Desarrollado como parte del curso de Métodos Numéricos, con fines educativos (Diego Alonso Fernández Delgadillo).
+Desarrollado como parte del curso de Métodos Numéricos, con fines educativos (Fernández Delgadillo Diego Alonso).
 
