@@ -65,6 +65,46 @@ El método de bisección es una técnica iterativa que permite encontrar una ra�
 3. Evaluar `f(c)` y determinar el nuevo subintervalo.
 4. Repetir hasta que el error sea menor al permitido.
 
+**Pseudocódigo:**
+Algoritmo MétodoDeBisección
+    Inicio
+        Intentar
+            raíz <- Bisección(0, 3, 0.000001)
+            Escribir "La raíz encontrada es: " + Formatear(raíz, "%.3f")
+        Capturar excepción (IllegalArgumentException e)
+            Escribir e.mensaje
+        Fin intentar
+    Fin
+
+Función Bisección(a, b, error) -> real
+    Inicio
+        Si f(a) * f(b) >= 0 entonces
+            Lanzar nueva excepción "La función debe tener signos opuestos en los extremos del intervalo"
+        Fin si
+        
+        Mientras |b - a| > error hacer
+            c <- (a + b) / 2
+            fc <- f(c)
+            
+            Si |fc| < 0.000000000001 entonces
+                Retornar c
+            Fin si
+            
+            Si f(a) * fc < 0 entonces
+                b <- c
+            Sino
+                a <- c
+            Fin si
+        Fin mientras
+        
+        Retornar (a + b) / 2
+    Fin función
+
+Función f(x) -> real
+    Inicio
+        Retornar x * x - 4
+    Fin función
+
 **Código en Java:**
 ```java
 // Bisección en Java
@@ -107,6 +147,9 @@ public class BisectionMethod {
 ```
 ![alt text](image.png)
 
+**Casos de prueba**
+![alt text](image-4.png)
+
 ### 📐 Método de la Falsa Posición <a name="metodo-de-la-falsa-posicion"></a>
 
 **Descripción:**  
@@ -117,6 +160,48 @@ También conocido como "regula falsi", este método mejora la convergencia del m
 2. Calcular el punto `c` usando la fórmula de interpolación lineal.
 3. Evaluar `f(c)` y determinar el nuevo subintervalo.
 4. Repetir hasta que el error sea menor al permitido.
+
+**Pseudocódigo**
+Algoritmo MétodoFalsaPosición
+    Inicio
+        Intentar
+            raíz <- FalsaPosición(0, 3, 0.000001)
+            Escribir "Raíz encontrada: " + Formatear(raíz, "%.3f")
+        Capturar excepción (IllegalArgumentException e)
+            Escribir "Error: " + e.mensaje
+        Fin intentar
+    Fin
+
+Función FalsaPosición(a, b, error) -> real
+    Inicio
+        Si f(a) * f(b) >= 0 entonces
+            Lanzar nueva excepción "La función no cambia de signo en [a, b]."
+        Fin si
+        
+        c <- a  // Inicialización
+        
+        Mientras |f(c)| > error hacer
+            // Fórmula de la falsa posición
+            c <- (a * f(b) - b * f(a)) / (f(b) - f(a))
+            
+            Si |f(c)| < 0.000000000001 entonces
+                Terminar bucle
+            Fin si
+            
+            Si f(a) * f(c) < 0 entonces
+                b <- c  // La raíz está en [a, c]
+            Sino
+                a <- c  // La raíz está en [c, b]
+            Fin si
+        Fin mientras
+        
+        Retornar c
+    Fin función
+
+Función f(x) -> real
+    Inicio
+        Retornar x * x - 4  // Ejemplo: f(x) = x² - 4
+    Fin función
 
 **Código en Java:**
 ```java
@@ -170,6 +255,10 @@ public class FalsePositionMethod {
 }
 ```
 ![alt text](image-1.png)
+
+**Casos de prueba**
+![alt text](image-5.png)
+
 ### 📈 Método de la Secante  <a name="metodo-de-la-secante"></a>
 
 **Descripción:**  
@@ -180,6 +269,56 @@ El método de la secante es una variante del método de Newton-Raphson que no re
 2. Calcular el siguiente punto usando la fórmula de la secante.
 3. Actualizar los puntos anteriores con los nuevos valores.
 4. Repetir hasta que el error sea menor al permitido.
+
+**Pseudocódigo**
+Algoritmo MétodoSecante
+    Inicio
+        Intentar
+            x0 ← 1.0       // Primera aproximación inicial
+            x1 ← 3.0       // Segunda aproximación inicial
+            error ← 0.000001  // Tolerancia de error
+            
+            raíz ← Secante(x0, x1, error)
+            Escribir "Raíz encontrada: " + Formatear(raíz, "%.3f")
+            
+        Capturar excepción (IllegalArgumentException e)
+            Escribir "Error: " + e.mensaje
+        Capturar excepción (ArithmeticException e)
+            Escribir "Error matemático: " + e.mensaje
+        Fin intentar
+    Fin
+
+Función Secante(x0, x1, error) → real
+    Inicio
+        Si x0 == x1 entonces
+            Lanzar nueva excepción "x0 y x1 no pueden ser iguales."
+        Fin si
+        
+        x2 ← 0.0  // Inicialización de la nueva aproximación
+        
+        Repetir
+            denominador ← f(x1) - f(x0)
+            
+            Si |denominador| < 0.000000000001 entonces
+                Lanzar nueva excepción "División por cero (f(x1) ≈ f(x0))."
+            Fin si
+            
+            // Fórmula del método de la secante
+            x2 ← x1 - (f(x1) * (x1 - x0)) / denominador
+            
+            // Actualizar valores para la siguiente iteración
+            x0 ← x1
+            x1 ← x2
+            
+        Hasta que |f(x2)| ≤ error
+        
+        Retornar x2
+    Fin función
+
+Función f(x) → real
+    Inicio
+        Retornar x * x - 4  // Ejemplo: f(x) = x² - 4 (raíces en x=2 y x=-2)
+    Fin función
 
 **Código en Java:**
 ```java
@@ -241,6 +380,9 @@ public class SecantMethod {
 ```
 ![alt text](image-2.png)
 
+**Casos de prueba**
+![alt text](image-6.png)
+
 ### ⚡ Método de Newton-Raphson <a name="metodo-de-newton-raphson"></a>
 
 **Descripción:**  
@@ -250,6 +392,55 @@ Este método iterativo utiliza la derivada de la función para converger más r�
 1. Elegir un punto inicial x0.
 2. Calcular el siguiente punto usando la fórmula de Newton-Raphson.
 3. Repetir hasta que el error sea menor al permitido.
+
+**Pseudocódigo**
+Algoritmo MétodoNewtonRaphson
+    Inicio
+        Intentar
+            x0 ← 2.5          // Aproximación inicial
+            tolerancia ← 0.000001  // Error máximo permitido
+            
+            raíz ← NewtonRaphson(x0, tolerancia)
+            Escribir "Raíz encontrada: " + Formatear(raíz, "%.6f")
+            
+        Capturar excepción (IllegalArgumentException e)
+            Escribir "Error: " + e.mensaje
+        Fin intentar
+    Fin
+
+Función NewtonRaphson(x0, error) → real
+    Inicio
+        x1 ← 0.0  // Inicialización de la nueva aproximación
+        
+        Repetir
+            derivada ← df(x0)  // Evaluar la derivada en x0
+            
+            Si |derivada| < 0.000000000001 entonces
+                Lanzar nueva excepción "Derivada cero en x = " + x0
+            Fin si
+            
+            // Fórmula de Newton-Raphson
+            x1 ← x0 - f(x0) / derivada
+            
+            // Actualizar la aproximación
+            x0 ← x1
+            
+        Hasta que |f(x1)| ≤ error
+        
+        Retornar x1
+    Fin función
+
+// Función original f(x) = x² - 4
+Función f(x) → real
+    Inicio
+        Retornar x * x - 4
+    Fin función
+
+// Derivada f'(x) = 2x
+Función df(x) → real
+    Inicio
+        Retornar 2 * x
+    Fin función
 
 **Código en Java:**
 ```java
@@ -301,3 +492,6 @@ public class NewtonRaphsonMethod {
 }
 ```
 ![alt text](image-3.png)
+
+**Casos de prueba**
+![alt text](image-7.png)
