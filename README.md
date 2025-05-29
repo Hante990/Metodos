@@ -52,6 +52,21 @@ Este tipo de error ocurre cuando se detiene un cálculo numérico en un número 
 
 **Ejemplo: Aproximación de `e^x` usando una serie de Taylor:**
 
+**Pseudocódigo**
+```plaintext
+Función expTaylor(x, n)
+    sum ← 1.0
+    term ← 1.0
+
+    Para i desde 1 hasta n hacer
+        term ← term * (x / i)
+        sum ← sum + term
+    Fin Para
+
+    Retornar sum
+Fin Función
+```
+**Código java**
 ```java
 public static double expTaylor(double x, int n) {
     double sum = 1.0;
@@ -76,6 +91,19 @@ Este error se presenta cuando se utilizan representaciones limitadas de los núm
 
 **Ejemplo: Restar dos números muy cercanos (cancelación)**
 
+**Pseudocódigo**
+```plaintext
+Inicio
+    a ← 1.0000001
+    b ← 1.0000000
+
+    result ← (a - b) / (a + b)
+
+    Escribir "Resultado: " + result
+Fin
+```
+
+**Código Java**
 ```java
 double a = 1.0000001;
 double b = 1.0000000;
@@ -93,6 +121,18 @@ Ocurre cuando se intenta representar un número fuera del rango que la variable 
 
 **Ejemplo: Aproximación de `e^x` usando una serie de Taylor:**
 
+**Pseudocódigo**
+```plaintext
+Función factorial(n)
+    result ← 1
+    Para i desde 2 hasta n hacer
+        result ← result * i
+    Fin Para
+    Retornar result
+Fin Función
+```
+
+**Código Java**
 ```java
 public static long factorial(int n) {
     long result = 1;
