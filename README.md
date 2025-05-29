@@ -17,12 +17,18 @@ Los métodos numéricos son técnicas que permiten encontrar soluciones aproxima
 Este repositorio está organizado por **ramas** (branches) correspondientes a cada uno de los temas principales del curso. Cada rama contiene ejercicios resueltos, explicaciones y código documentado.
 
 - `main` - Rama principal del proyecto. Contiene esta documentación general.
-- `tema-1-introducción-MN` - Tema 1: Introducción a metódos numericos.
-- `tema-2-solucion-ecuaciones` - Tema 2: Métodos de Solución de Ecuaciones.
-- `tema-3-sistemas-ecuaciones` - Tema 3: Métodos de Solución de Sistemas de Ecuaciones.
-- `tema-4-diferenciacion-integracion` - Tema 4: Diferenciación e Integración Numérica.
-- `tema-5-interpolacion-ajuste` - Tema 5: Interpolación y Ajuste de Funciones.
-- `tema-6-ecuaciones-diferenciales` - Tema 6: Solución de Ecuaciones Diferenciales.
+- 🔹 [Tema 1: Introducción a Métodos Numéricos](https://github.com/Hante990/Metodos/tree/Tema_1)
+  - Rama: `tema-1-introducción-MN`
+- 🔹 [Tema 2: Métodos de Solución de Ecuaciones](https://github.com/Hante990/Metodos/tree/Tema_2)
+  - Rama: `tema-2-solucion-ecuaciones`
+- 🔹 [Tema 3: Métodos de Solución de Sistemas de Ecuaciones](https://github.com/Hante990/Metodos/tree/Tema_3)
+  - Rama: `tema-3-sistemas-ecuaciones`
+- 🔹 [Tema 4: Diferenciación e Integración Numérica](https://github.com/Hante990/Metodos/tree/Tema_4)
+  - Rama: `tema-4-diferenciacion-integracion`
+- 🔹 [Tema 5: Interpolación y Ajuste de Funciones](https://github.com/Hante990/Metodos/tree/Tema_5)
+  - Rama: `tema-5-interpolacion-ajuste`
+- 🔹 [Tema 6: Solución de Ecuaciones Diferenciales](https://github.com/Hante990/Metodos/tree/Tema_6)
+  - Rama: `tema-6-ecuaciones-diferenciales`
 
 Cada rama puede ser explorada individualmente para consultar los ejercicios correspondientes a ese tema.
 
