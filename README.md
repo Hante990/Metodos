@@ -16,7 +16,6 @@ Este repositorio contiene una recopilación de ejercicios desarrollados como par
   - [📐 Método de la Falsa Posición](#metodo-de-la-falsa-posicion)
   - [📈 Método de la Secante](#metodo-de-la-secante)
   - [⚡ Método de Newton-Raphson](#metodo-de-newton-raphson)
-- [👨‍💻 Autor](#autor)
 
 ---
 
