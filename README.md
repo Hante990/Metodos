@@ -75,25 +75,31 @@ Algoritmo MétodoDeBisección
             Escribir e.mensaje
         Fin intentar
     Fin
+
 Función Bisección(a, b, error) -> real
     Inicio
         Si f(a) * f(b) >= 0 entonces
             Lanzar nueva excepción "La función debe tener signos opuestos en los extremos del intervalo"
         Fin si
+        
         Mientras |b - a| > error hacer
             c <- (a + b) / 2
             fc <- f(c)
+            
             Si |fc| < 0.000000000001 entonces
                 Retornar c
             Fin si
+            
             Si f(a) * fc < 0 entonces
                 b <- c
             Sino
                 a <- c
             Fin si
         Fin mientras
+        
         Retornar (a + b) / 2
     Fin función
+
 Función f(x) -> real
     Inicio
         Retornar x * x - 4
@@ -165,26 +171,33 @@ Algoritmo MétodoFalsaPosición
             Escribir "Error: " + e.mensaje
         Fin intentar
     Fin
+
 Función FalsaPosición(a, b, error) -> real
     Inicio
         Si f(a) * f(b) >= 0 entonces
             Lanzar nueva excepción "La función no cambia de signo en [a, b]."
         Fin si
+        
         c <- a  // Inicialización
+        
         Mientras |f(c)| > error hacer
             // Fórmula de la falsa posición
             c <- (a * f(b) - b * f(a)) / (f(b) - f(a))
+            
             Si |f(c)| < 0.000000000001 entonces
                 Terminar bucle
             Fin si
+            
             Si f(a) * f(c) < 0 entonces
                 b <- c  // La raíz está en [a, c]
             Sino
                 a <- c  // La raíz está en [c, b]
             Fin si
         Fin mientras
+        
         Retornar c
     Fin función
+
 Función f(x) -> real
     Inicio
         Retornar x * x - 4  // Ejemplo: f(x) = x² - 4
@@ -264,33 +277,44 @@ Algoritmo MétodoSecante
             x0 ← 1.0       // Primera aproximación inicial
             x1 ← 3.0       // Segunda aproximación inicial
             error ← 0.000001  // Tolerancia de error
+            
             raíz ← Secante(x0, x1, error)
             Escribir "Raíz encontrada: " + Formatear(raíz, "%.3f")
+            
         Capturar excepción (IllegalArgumentException e)
             Escribir "Error: " + e.mensaje
         Capturar excepción (ArithmeticException e)
             Escribir "Error matemático: " + e.mensaje
         Fin intentar
     Fin
+
 Función Secante(x0, x1, error) → real
     Inicio
         Si x0 == x1 entonces
             Lanzar nueva excepción "x0 y x1 no pueden ser iguales."
         Fin si
+        
         x2 ← 0.0  // Inicialización de la nueva aproximación
+        
         Repetir
             denominador ← f(x1) - f(x0)
+            
             Si |denominador| < 0.000000000001 entonces
                 Lanzar nueva excepción "División por cero (f(x1) ≈ f(x0))."
             Fin si
+            
             // Fórmula del método de la secante
             x2 ← x1 - (f(x1) * (x1 - x0)) / denominador
+            
             // Actualizar valores para la siguiente iteración
             x0 ← x1
             x1 ← x2
+            
         Hasta que |f(x2)| ≤ error
+        
         Retornar x2
     Fin función
+
 Función f(x) → real
     Inicio
         Retornar x * x - 4  // Ejemplo: f(x) = x² - 4 (raíces en x=2 y x=-2)
@@ -374,33 +398,44 @@ Algoritmo MétodoNewtonRaphson
     Inicio
         Intentar
             x0 ← 2.5          // Aproximación inicial
-            tolerancia ← 0.000001  // Error máximo permitido           
+            tolerancia ← 0.000001  // Error máximo permitido
+            
             raíz ← NewtonRaphson(x0, tolerancia)
-            Escribir "Raíz encontrada: " + Formatear(raíz, "%.6f")         
+            Escribir "Raíz encontrada: " + Formatear(raíz, "%.6f")
+            
         Capturar excepción (IllegalArgumentException e)
             Escribir "Error: " + e.mensaje
         Fin intentar
     Fin
+
 Función NewtonRaphson(x0, error) → real
     Inicio
-        x1 ← 0.0  // Inicialización de la nueva aproximación      
+        x1 ← 0.0  // Inicialización de la nueva aproximación
+        
         Repetir
-            derivada ← df(x0)  // Evaluar la derivada en x0           
+            derivada ← df(x0)  // Evaluar la derivada en x0
+            
             Si |derivada| < 0.000000000001 entonces
                 Lanzar nueva excepción "Derivada cero en x = " + x0
-            Fin si           
+            Fin si
+            
             // Fórmula de Newton-Raphson
-            x1 ← x0 - f(x0) / derivada         
+            x1 ← x0 - f(x0) / derivada
+            
             // Actualizar la aproximación
-            x0 ← x1         
-        Hasta que |f(x1)| ≤ error     
+            x0 ← x1
+            
+        Hasta que |f(x1)| ≤ error
+        
         Retornar x1
     Fin función
+
 // Función original f(x) = x² - 4
 Función f(x) → real
     Inicio
         Retornar x * x - 4
     Fin función
+
 // Derivada f'(x) = 2x
 Función df(x) → real
     Inicio
