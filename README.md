@@ -28,11 +28,12 @@ Los errores son inherentes a los métodos numéricos debido a la forma en que la
 
 ### 🎯 Competencia de la Asignatura <a name="competencia-de-la-asignatura"></a>
 
-Aplicar métodos numéricos para resolver problemas científicos e ingenieriles utilizando la computadora como herramienta principal.
+Aplica los métodos numéricos para resolver problemas científicos y de ingeniería utilizando
+la computadora.
 
 ### 🔍 Competencia del Tema <a name="competencia-del-tema"></a>
 
-Identificar y analizar los errores presentes en cálculos numéricos, entendiendo su origen y efectos sobre los resultados obtenidos por computadora.
+Aplica los tipos de errores para identificar la incertidumbre y limitaciones de los cálculos numéricos en una computadora.
 
 ### 📌 Temario <a name="temario"></a>
 
