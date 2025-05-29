@@ -62,8 +62,38 @@ Permite estimar un valor `y` para un `x` dado entre dos puntos conocidos.
 Si se conocen dos puntos `(x₀, y₀)` y `(x₁, y₁)`, el valor estimado `y` para `x` es:  
 y ≈ y₀ + ( (x - x₀) * (y₁ - y₀) ) / (x₁ - x₀)
 
-**Codigo en java:**  
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función interpolacionLineal(x0, y0, x1, y1, x):
+        Si x0 == x1 entonces
+            Lanzar excepción "Los valores x0 y x1 no pueden ser iguales (evitar división por cero)"
+        FinSi
 
+        pendiente = (y1 - y0) / (x1 - x0)
+        terminoIndependiente = y0 - pendiente * x0
+
+        Retornar pendiente * x + terminoIndependiente
+
+    En el programa principal:
+        Definir x0 = 1.0, y0 = 2.0
+        Definir x1 = 3.0, y1 = 6.0
+        Definir x = 2.0
+
+        Intentar:
+            y = interpolacionLineal(x0, y0, x1, y1, x)
+            Imprimir "Para x = " + x + ", y ≈ " + y (formateado a 3 decimales)
+
+            // Caso adicional
+            y_adicional = interpolacionLineal(x0, y0, x1, y1, 1.5)
+            Imprimir "Para x = 1.5, y ≈ " + y_adicional (formateado a 3 decimales)
+
+        Capturar excepción:
+            Imprimir "Error: " + mensaje de la excepción
+Fin
+```
+
+**Código en java:**  
 ```java
 import java.text.DecimalFormat;
 
@@ -107,6 +137,10 @@ public class InterpolacionLineal {
 ```
 ![alt text](image.png)
 
+**Casos de prueba**
+
+![alt text](image-5.png)
+
 ### 🔸 Interpolación Polinómica (de Lagrange) <a name="interpolacion-polinomica"></a>
 
 **Descripción:**  
@@ -116,8 +150,56 @@ Calcula un polinomio que pasa exactamente por un conjunto de puntos dados.
 P(x) = Σ [ yᵢ * Lᵢ(x) ]  
 Lᵢ(x) = Π [ (x - xⱼ) / (xᵢ - xⱼ) ], para j ≠ i
 
-**Codigo en java:**  
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función lagrange(x[], y[], valor):
+        Si longitud(x) != longitud(y) entonces
+            Lanzar excepción "Los arrays x e y deben tener la misma longitud"
+        FinSi
 
+        Si longitud(x) < 2 entonces
+            Lanzar excepción "Se requieren al menos 2 puntos para la interpolación"
+        FinSi
+
+        resultado = 0.0
+
+        Para i desde 0 hasta longitud(x)-1 hacer:
+            termino = y[i]
+
+            Para j desde 0 hasta longitud(x)-1 hacer:
+                Si i != j entonces
+                    Si x[i] == x[j] entonces
+                        Lanzar excepción "Los valores x no pueden repetirse (x[i] = x[j] = valor)"
+                    FinSi
+                    termino = termino * (valor - x[j]) / (x[i] - x[j])
+                FinSi
+            FinPara
+
+            resultado = resultado + termino
+        FinPara
+
+        Retornar resultado
+
+    En el programa principal:
+        Definir x = [1.0, 2.0, 4.0, 5.0]
+        Definir y = [1.0, 4.0, 16.0, 25.0]
+        Definir valor = 3.0
+
+        Intentar:
+            yInterpolado = lagrange(x, y, valor)
+            Imprimir "Interpolación en x = " + valor + " → y = " + yInterpolado (formateado a 5 decimales)
+
+            // Prueba adicional
+            yInterpoladoAdicional = lagrange(x, y, 2.5)
+            Imprimir "Interpolación en x = 2.5 → y = " + yInterpoladoAdicional (formateado a 5 decimales)
+
+        Capturar excepción:
+            Imprimir "Error: " + mensaje de la excepción
+Fin
+```
+
+**Código en java:**  
 ```java
 import java.text.DecimalFormat;
 
@@ -177,6 +259,10 @@ public class InterpolacionLagrange {
 ```
 ![alt text](image-1.png)
 
+**Casos de prueba**
+
+![alt text](image-6.png)
+
 ### 📊 Regresión Lineal y No Lineal <a name="regresion-lineal-y-no-lineal"></a>
 
 **Descripción:**  
@@ -186,8 +272,76 @@ Busca la recta o curva que mejor ajusta un conjunto de datos observados.
 b = (nΣxy - ΣxΣy) / (nΣx² - (Σx)²)  
 a = (Σy - bΣx) / n
 
-**Codigo en java:**  
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función regresionLineal(x[], y[]):
+        Si longitud(x) != longitud(y) entonces
+            Lanzar excepción "Los arrays x e y deben tener la misma longitud"
+        FinSi
 
+        Si longitud(x) == 0 entonces
+            Lanzar excepción "Los arrays no pueden estar vacíos"
+        FinSi
+
+        Si longitud(x) < 2 entonces
+            Lanzar excepción "Se requieren al menos 2 puntos para la regresión"
+        FinSi
+
+        n = longitud(x)
+        sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0
+
+        Para i desde 0 hasta n-1 hacer:
+            sumX += x[i]
+            sumY += y[i]
+            sumXY += x[i] * y[i]
+            sumX2 += x[i] * x[i]
+        FinPara
+
+        denominador = n * sumX2 - sumX * sumX
+        Si denominador == 0 entonces
+            Lanzar excepción "Los datos x no pueden ser todos iguales (varianza cero)"
+        FinSi
+
+        b = (n * sumXY - sumX * sumY) / denominador
+        a = (sumY - b * sumX) / n
+
+        Retornar [redondear(a, 5), redondear(b, 5)]
+
+    Definir función redondear(valor, decimales):
+        factor = 10^decimales
+        Retornar redondear(valor * factor) / factor
+
+    Definir función calcularR2(x[], y[], a, b):
+        ssTotal = 0
+        ssResidual = 0
+        yMean = promedio de y
+
+        Para i desde 0 hasta longitud(y)-1 hacer:
+            yPred = a + b * x[i]
+            ssTotal += (y[i] - yMean)^2
+            ssResidual += (y[i] - yPred)^2
+        FinPara
+
+        Retornar 1 - (ssResidual / ssTotal)
+
+    En el programa principal:
+        Definir x = [1, 2, 3, 4, 5]
+        Definir y = [5, 8, 11, 14, 17]
+
+        Intentar:
+            coeficientes = regresionLineal(x, y)
+            Imprimir "Ecuación de regresión:"
+            Imprimir "y = " + coeficientes[0] + " + " + coeficientes[1] + "x"
+
+            r2 = calcularR2(x, y, coeficientes[0], coeficientes[1])
+            Imprimir "Coeficiente de determinación R² = " + r2
+        Capturar excepción:
+            Imprimir "Error: " + mensaje de la excepción
+Fin
+```
+
+**Código en java:**  
 ```java
 import java.text.DecimalFormat;
 
@@ -281,6 +435,10 @@ public class RegresionLineal {
 ```
 ![alt text](image-2.png)
 
+**Casos de prueba**
+
+![alt text](image-7.png)
+
 ### 📉 Correlación <a name="correlacion"></a>
 
 **Descripción:**  
@@ -296,8 +454,78 @@ r ≈ -1: Correlación negativa fuerte
 
 r ≈ 0: Sin correlación lineal
 
-**Codigo en java:**  
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función correlacion(x[], y[]):
+        Si longitud(x) != longitud(y) entonces
+            Lanzar excepción "Los arrays x e y deben tener la misma longitud"
+        FinSi
 
+        Si longitud(x) == 0 entonces
+            Lanzar excepción "Los arrays no pueden estar vacíos"
+        FinSi
+
+        Si longitud(x) < 2 entonces
+            Lanzar excepción "Se requieren al menos 2 puntos para calcular correlación"
+        FinSi
+
+        n = longitud(x)
+        sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0
+
+        Para i desde 0 hasta n-1 hacer:
+            sumX += x[i]
+            sumY += y[i]
+            sumXY += x[i] * y[i]
+            sumX2 += x[i] * x[i]
+            sumY2 += y[i] * y[i]
+        FinPara
+
+        numerator = n * sumXY - sumX * sumY
+        denomX = n * sumX2 - sumX * sumX
+        denomY = n * sumY2 - sumY * sumY
+
+        Si denomX == 0 o denomY == 0 entonces
+            Lanzar excepción "No se puede calcular correlación cuando un variable es constante"
+        FinSi
+
+        denominator = raíz cuadrada (denomX * denomY)
+        r = numerator / denominator
+
+        // Asegurar que r esté en [-1, 1] debido a errores de redondeo
+        r = máximo(-1.0, mínimo(1.0, r))
+
+        Retornar redondear(r, 4)
+
+    Definir función redondear(valor, decimales):
+        factor = 10^decimales
+        Retornar redondear(valor * factor) / factor
+
+    En el programa principal:
+        Definir arrays:
+            x1 = [1, 2, 3, 4, 5]
+            y1 = [2, 4, 6, 8, 10]
+
+            x2 = [1, 2, 3, 4, 5]
+            y2 = [10, 8, 6, 4, 2]
+
+            x3 = [1, 2, 3, 4, 5]
+            y3 = [2, 3, 2, 3, 2]
+
+            altura = [1.65, 1.70, 1.75, 1.80, 1.85]
+            peso = [58, 62, 70, 72, 80]
+
+        Intentar:
+            Imprimir "Correlación positiva:" + correlacion(x1, y1)
+            Imprimir "Correlación negativa:" + correlacion(x2, y2)
+            Imprimir "Sin correlación:" + correlacion(x3, y3)
+            Imprimir "Correlación altura-peso:" + correlacion(altura, peso)
+        Capturar excepción:
+            Imprimir "Error:" + mensaje de la excepción
+Fin
+```
+
+**Código en java:**  
 ```java
 import java.text.DecimalFormat;
 
@@ -384,6 +612,10 @@ public class AnalisisCorrelacion {
 ```
 ![alt text](image-3.png)
 
+**Casos de prueba**
+
+![alt text](image-8.png)
+
 ### 📐 Mínimos Cuadrados <a name="minimos-cuadrados"></a>
 
 **Descripción:**  
@@ -393,8 +625,79 @@ Minimiza el error cuadrático total entre los puntos y una curva ajustada.
 E = Σ (yᵢ - (a + bxᵢ))²
 Se aplica tanto a funciones lineales como polinomios de grado n o exponenciales (con transformaciones). 
 
-**Codigo en java:**  
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función minimosCuadrados(x[], y[]):
+        Si x es nulo o y es nulo entonces
+            Lanzar excepción "Los arrays no pueden ser nulos"
+        FinSi
 
+        Si longitud(x) != longitud(y) entonces
+            Lanzar excepción "Los arrays deben tener la misma longitud"
+        FinSi
+
+        Si longitud(x) < 2 entonces
+            Lanzar excepción "Se requieren al menos 2 puntos para la regresión"
+        FinSi
+
+        n = longitud(x)
+        sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0
+
+        Para i desde 0 hasta n-1 hacer:
+            sumX += x[i]
+            sumY += y[i]
+            sumXY += x[i] * y[i]
+            sumX2 += x[i] * x[i]
+        FinPara
+
+        denominador = n * sumX2 - sumX * sumX
+        Si denominador == 0 entonces
+            Lanzar excepción "Los datos de x no pueden ser todos iguales"
+        FinSi
+
+        b = (n * sumXY - sumX * sumY) / denominador
+        a = (sumY - b * sumX) / n
+
+        Retornar [redondear(a, 4), redondear(b, 4)]
+
+    Definir función redondear(valor, decimales):
+        factor = 10^decimales
+        Retornar redondear(valor * factor) / factor
+
+    Definir función calcularR2(x[], y[], a, b):
+        ssTotal = 0
+        ssResidual = 0
+        yPromedio = promedio de y
+
+        Para i desde 0 hasta longitud(y)-1 hacer:
+            yPredicho = a + b * x[i]
+            ssTotal += (y[i] - yPromedio)^2
+            ssResidual += (y[i] - yPredicho)^2
+        FinPara
+
+        Retornar 1 - (ssResidual / ssTotal)
+
+    En el programa principal:
+        Definir x = [1, 2, 3, 4, 5]
+        Definir y = [5, 8, 11, 14, 17]
+
+        Intentar:
+            coeficientes = minimosCuadrados(x, y)
+            Imprimir "Ecuación de regresión:"
+            Imprimir "y = " + coeficientes[0] + " + " + coeficientes[1] + "x"
+
+            r2 = calcularR2(x, y, coeficientes[0], coeficientes[1])
+            Imprimir "Coeficiente de determinación (R²): " + r2
+
+            prediccion = coeficientes[0] + coeficientes[1] * 6
+            Imprimir "Predicción para x=6: y = " + prediccion
+        Capturar excepción:
+            Imprimir "Error: " + mensaje de la excepción
+Fin
+```
+
+**Código en java:**  
 ```java
 import java.text.DecimalFormat;
 
@@ -494,3 +797,7 @@ public class RegresionMinimosCuadrados {
 }
 ```
 ![alt text](image-4.png)
+
+**Casos de prueba**
+
+![alt text](image-9.png)
