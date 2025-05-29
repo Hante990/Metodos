@@ -15,7 +15,6 @@ Este repositorio contiene ejercicios y ejemplos prácticos implementados en Java
   - [✂️ Error de Truncamiento](#error-de-truncamiento)
   - [📉 Error de Aproximación](#error-de-aproximación)
   - [💥 Overflow](#overflow)
-- [👨‍💻 Autor](#autor)
 
 ---
 
