@@ -37,11 +37,11 @@ Cada ejercicio incluye descripción, pasos generales del método, y el código c
 
 ### 🎯 Competencia de la Asignatura <a name="competencia-de-la-asignatura"></a>
 
-Aplicar métodos numéricos para resolver problemas científicos y de ingeniería utilizando la computadora.
+Aplica los métodos numéricos para resolver problemas científicos y de ingeniería utilizando la computadora.
 
 ### 🔍 Competencia del Tema <a name="competencia-del-tema"></a>
 
-Utilizar métodos numéricos con el objetivo de solucionar ecuaciones mediante técnicas de intervalo e interpolación, apoyándose en un lenguaje de programación.
+Aplica los métodos numéricos con el objeto de solucionar ecuaciones mediante los métodos de intervalo e interpolación apoyada de un lenguaje de programación.  
 
 ### 📌 Temario <a name="temario"></a>
 
