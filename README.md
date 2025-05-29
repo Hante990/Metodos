@@ -67,6 +67,7 @@ El método de bisección es una técnica iterativa que permite encontrar una ra�
 
 **Pseudocódigo:**
 
+```plaintext
 Algoritmo MétodoDeBisección
     Inicio
         Intentar
@@ -105,6 +106,7 @@ Función f(x) -> real
     Inicio
         Retornar x * x - 4
     Fin función
+```
 
 **Código en Java:**
 ```java
@@ -163,6 +165,7 @@ También conocido como "regula falsi", este método mejora la convergencia del m
 4. Repetir hasta que el error sea menor al permitido.
 
 **Pseudocódigo**
+```plaintext
 Algoritmo MétodoFalsaPosición
     Inicio
         Intentar
@@ -203,6 +206,7 @@ Función f(x) -> real
     Inicio
         Retornar x * x - 4  // Ejemplo: f(x) = x² - 4
     Fin función
+```
 
 **Código en Java:**
 ```java
@@ -272,6 +276,7 @@ El método de la secante es una variante del método de Newton-Raphson que no re
 4. Repetir hasta que el error sea menor al permitido.
 
 **Pseudocódigo**
+```plaintext
 Algoritmo MétodoSecante
     Inicio
         Intentar
@@ -320,6 +325,7 @@ Función f(x) → real
     Inicio
         Retornar x * x - 4  // Ejemplo: f(x) = x² - 4 (raíces en x=2 y x=-2)
     Fin función
+```
 
 **Código en Java:**
 ```java
@@ -395,6 +401,7 @@ Este método iterativo utiliza la derivada de la función para converger más r�
 3. Repetir hasta que el error sea menor al permitido.
 
 **Pseudocódigo**
+```plaintext
 Algoritmo MétodoNewtonRaphson
     Inicio
         Intentar
@@ -442,6 +449,7 @@ Función df(x) → real
     Inicio
         Retornar 2 * x
     Fin función
+```
 
 **Código en Java:**
 ```java
