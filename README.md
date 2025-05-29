@@ -2,7 +2,7 @@
 
 Bienvenido al repositorio de **Métodos Numéricos**, una recopilación organizada de ejercicios desarrollados durante el curso, abarcando los principales temas que conforman esta importante materia en ingeniería y ciencias aplicadas.
 
-Este repositorio está diseñado con el objetivo de servir como apoyo y guía tanto para estudiantes como docentes, proporcionando implementaciones prácticas y códigos fuente de los distintos métodos numéricos estudiados.
+Este repositorio está diseñado con el objetivo de servir como apoyo y guía, proporcionando implementaciones prácticas y códigos fuente de los distintos métodos numéricos estudiados.
 
 ---
 
