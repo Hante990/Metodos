@@ -1,49 +1,98 @@
-# 📘 Métodos Numéricos
+# 🧮 Tema 1: Errores Numéricos
 
-Bienvenido al repositorio de **Métodos Numéricos**, una recopilación organizada de ejercicios desarrollados durante el curso, abarcando los principales temas que conforman esta importante materia en ingeniería y ciencias aplicadas.
-
-Este repositorio está diseñado con el objetivo de servir como apoyo y guía, proporcionando implementaciones prácticas y códigos fuente de los distintos métodos numéricos estudiados.
+Este repositorio contiene ejercicios y ejemplos prácticos implementados en Java para entender y visualizar los distintos tipos de errores que se presentan al trabajar con métodos numéricos. El enfoque principal está en los **errores de truncamiento**, **errores de aproximación** y el temido **overflow**.
 
 ---
 
-## 🧠 ¿Qué son los Métodos Numéricos?
+## 📑 Índice
 
-Los métodos numéricos son técnicas que permiten encontrar soluciones aproximadas a problemas matemáticos que no pueden resolverse de manera exacta mediante métodos analíticos. Estas herramientas se aplican en múltiples disciplinas para resolver ecuaciones, sistemas, derivadas, integrales y problemas complejos del mundo real.
-
----
-
-## 📂 Estructura del Repositorio
-
-Este repositorio está organizado por **ramas** (branches) correspondientes a cada uno de los temas principales del curso. Cada rama contiene ejercicios resueltos, explicaciones y código documentado.
-
-- `main` - Rama principal del proyecto. Contiene esta documentación general.
-- `tema-1-introducción-MN` - Tema 1: Introducción a metódos numericos.
-- `tema-2-solucion-ecuaciones` - Tema 2: Métodos de Solución de Ecuaciones.
-- `tema-3-sistemas-ecuaciones` - Tema 3: Métodos de Solución de Sistemas de Ecuaciones.
-- `tema-4-diferenciacion-integracion` - Tema 4: Diferenciación e Integración Numérica.
-- `tema-5-interpolacion-ajuste` - Tema 5: Interpolación y Ajuste de Funciones.
-- `tema-6-ecuaciones-diferenciales` - Tema 6: Solución de Ecuaciones Diferenciales.
-
-Cada rama puede ser explorada individualmente para consultar los ejercicios correspondientes a ese tema.
+- [📄 Descripción del Tema](#descripción-del-tema)
+- [📚 Sobre la Materia](#sobre-la-materia)
+  - [🎯 Competencia de la Asignatura](#competencia-de-la-asignatura)
+  - [🔍 Competencia del Tema](#competencia-del-tema)
+  - [📌 Temario](#temario)
+- [🧪 Tipos de Errores Numéricos](#tipos-de-errores-numéricos)
+  - [✂️ Error de Truncamiento](#error-de-truncamiento)
+  - [📉 Error de Aproximación](#error-de-aproximación)
+  - [💥 Overflow](#overflow)
+- [👨‍💻 Autor](#autor)
 
 ---
 
-## 💡 Objetivos del Repositorio
+## 📄 Descripción del Tema <a name="descripción-del-tema"></a>
 
-- Reforzar el aprendizaje práctico de los métodos numéricos.
-- Proveer una referencia de implementación en lenguaje de programación.
-- Fomentar la organización por temas y la colaboración a través de Git.
+Los errores son inherentes a los métodos numéricos debido a la forma en que las computadoras representan números. Este tema permite comprender su origen, cómo se manifiestan y cómo pueden minimizarse.
 
 ---
 
-## 🛠 Tecnologías utilizadas
+## 📚 Sobre la Materia <a name="sobre-la-materia"></a>
 
-Dependiendo del tema y de los ejercicios, pueden utilizarse distintos lenguajes y herramientas como:
+### 🎯 Competencia de la Asignatura <a name="competencia-de-la-asignatura"></a>
 
-- Java
+Aplicar métodos numéricos para resolver problemas científicos e ingenieriles utilizando la computadora como herramienta principal.
+
+### 🔍 Competencia del Tema <a name="competencia-del-tema"></a>
+
+Identificar y analizar los errores presentes en cálculos numéricos, entendiendo su origen y efectos sobre los resultados obtenidos por computadora.
+
+### 📌 Temario <a name="temario"></a>
+
+- Error de Truncamiento
+- Error de Aproximación
+- Overflow (desbordamiento)
+
 ---
 
-## 👨‍🏫 Autor
+## 🧪 Tipos de Errores Numéricos <a name="tipos-de-errores-numéricos"></a>
 
-Desarrollado como parte del curso de Métodos Numéricos, con fines educativos (Fernández Delgadillo Diego Alonso).
+### ✂️ Error de Truncamiento <a name="error-de-truncamiento"></a>
 
+**Descripción:**  
+Este tipo de error ocurre cuando se detiene un cálculo numérico en un número finito de pasos, ignorando términos menores. Es común en series infinitas, derivadas y métodos iterativos.
+
+**Ejemplo: Aproximación de `e^x` usando una serie de Taylor:**
+
+```java
+public static double expTaylor(double x, int n) {
+    double sum = 1.0;
+    double term = 1.0;
+
+    for (int i = 1; i <= n; i++) {
+        term *= x / i;
+        sum += term;
+    }
+
+    return sum;
+}
+```
+
+### 📉 Error de Aproximación <a name="error-de-aproximación"></a>
+
+**Descripción:**  
+Este error se presenta cuando se utilizan representaciones limitadas de los números reales en la computadora. Por ejemplo, representar 1/3 como 0.333....
+
+**Ejemplo: Restar dos números muy cercanos (cancelación)**
+
+```java
+double a = 1.0000001;
+double b = 1.0000000;
+double result = (a - b) / (a + b);
+System.out.println("Resultado: " + result);
+```
+
+### 💥 Overflow <a name="overflow"></a>
+
+**Descripción:**  
+Ocurre cuando se intenta representar un número fuera del rango que la variable puede manejar. Puede causar errores de ejecución o resultados inesperados.
+
+**Ejemplo: Aproximación de `e^x` usando una serie de Taylor:**
+
+```java
+public static long factorial(int n) {
+    long result = 1;
+    for (int i = 2; i <= n; i++) {
+        result *= i;
+    }
+    return result;
+}
+```
