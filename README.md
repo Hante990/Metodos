@@ -151,6 +151,7 @@ public class BisectionMethod {
 ![alt text](image.png)
 
 **Casos de prueba**
+
 ![alt text](image-4.png)
 
 ### 📐 Método de la Falsa Posición <a name="metodo-de-la-falsa-posicion"></a>
@@ -262,6 +263,7 @@ public class FalsePositionMethod {
 ![alt text](image-1.png)
 
 **Casos de prueba**
+
 ![alt text](image-5.png)
 
 ### 📈 Método de la Secante  <a name="metodo-de-la-secante"></a>
@@ -388,6 +390,7 @@ public class SecantMethod {
 ![alt text](image-2.png)
 
 **Casos de prueba**
+
 ![alt text](image-6.png)
 
 ### ⚡ Método de Newton-Raphson <a name="metodo-de-newton-raphson"></a>
@@ -503,4 +506,5 @@ public class NewtonRaphsonMethod {
 ![alt text](image-3.png)
 
 **Casos de prueba**
+
 ![alt text](image-7.png)
