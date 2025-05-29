@@ -24,6 +24,26 @@
   <p>Fórmula básica:</p>
   <pre><code>y_{n+1} = y_n + h * f(x_n, y_n)</code></pre>
 
+  **Pseudocódigo**
+  ```plaintext
+Inicio
+    Definir función funcion(x, y):
+        Retornar x + y
+
+    Definir variables:
+        x = valor inicial de x (no dado en el fragmento)
+        y = valor inicial de y (no dado en el fragmento)
+        h = tamaño del paso
+        pasos = número de iteraciones
+
+    Para i desde 0 hasta pasos - 1 hacer:
+        Imprimir "x=" + x formateado a 2 decimales + ", y=" + y formateado a 5 decimales
+        y = y + h * funcion(x, y)
+        x = x + h
+    FinPara
+Fin
+  ```
+
   <p><strong>Ejemplo en Java:</strong></p>
   <pre><code>public class MetodoEuler {
     public static void main(String[] args) {
@@ -42,6 +62,10 @@
     }
 }</code></pre>
 
+**Casos de prueba**
+
+![alt text](image.png)
+
   <h3>🔹 Método de Runge-Kutta de 4to Orden (RK4)</h3>
   <p>Más preciso que Euler:</p>
   <pre><code>k1 = f(x_n, y_n)
@@ -49,6 +73,32 @@ k2 = f(x_n + h/2, y_n + h*k1/2)
 k3 = f(x_n + h/2, y_n + h*k2/2)
 k4 = f(x_n + h, y_n + h*k3)
 y_{n+1} = y_n + (h/6)*(k1 + 2*k2 + 2*k3 + k4)</code></pre>
+
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función funcion(x, y):
+        Retornar x + y
+
+    Definir variables:
+        x = valor inicial de x (no dado en el fragmento)
+        y = valor inicial de y (no dado en el fragmento)
+        h = tamaño del paso
+        pasos = número de iteraciones
+
+    Para i desde 0 hasta pasos - 1 hacer:
+        k1 = h * funcion(x, y)
+        k2 = h * funcion(x + h/2, y + k1/2)
+        k3 = h * funcion(x + h/2, y + k2/2)
+        k4 = h * funcion(x + h, y + k3)
+
+        y = y + (k1 + 2*k2 + 2*k3 + k4) / 6
+        x = x + h
+
+        Imprimir "x=" + x formateado a 2 decimales + ", y=" + y formateado a 5 decimales
+    FinPara
+Fin
+```
 
   <p><strong>Ejemplo en Java:</strong></p>
   <pre><code>public class MetodoRK4 {
@@ -71,6 +121,10 @@ y_{n+1} = y_n + (h/6)*(k1 + 2*k2 + 2*k3 + k4)</code></pre>
         return x + y;
     }
 }</code></pre>
+
+**Casos de prueba**
+
+![alt text](image-1.png)
 </div>
 
 <div class="subtema">
@@ -91,6 +145,44 @@ y_{n+1} = y_n + (h/6)*(k1 + 2*k2 + 2*k3 + k4)</code></pre>
   <p>Cuando hay varias funciones dependientes, se utiliza un sistema de EDOs. Por ejemplo:</p>
   <pre><code>y1' = f1(x, y1, y2)
 y2' = f2(x, y1, y2)</code></pre>
+
+**Pseudocódigo**
+```plaintext
+Inicio
+    Definir función f1(x, y1, y2):
+        Retornar y2  // y1' = y2
+
+    Definir función f2(x, y1, y2):
+        Retornar -y1  // y2' = -y1 (oscilador armónico)
+
+    Definir variables:
+        x = valor inicial de x (no dado en el fragmento)
+        y1 = valor inicial de y1
+        y2 = valor inicial de y2
+        h = tamaño del paso
+        pasos = número de iteraciones
+
+    Para i desde 0 hasta pasos - 1 hacer:
+        Imprimir "x=" + x formateado a 2 decimales + ", y1=" + y1 formateado a 5 decimales + ", y2=" + y2 formateado a 5 decimales
+
+        k1 = h * f1(x, y1, y2)
+        l1 = h * f2(x, y1, y2)
+
+        k2 = h * f1(x + h/2, y1 + k1/2, y2 + l1/2)
+        l2 = h * f2(x + h/2, y1 + k1/2, y2 + l1/2)
+
+        k3 = h * f1(x + h/2, y1 + k2/2, y2 + l2/2)
+        l3 = h * f2(x + h/2, y1 + k2/2, y2 + l2/2)
+
+        k4 = h * f1(x + h, y1 + k3, y2 + l3)
+        l4 = h * f2(x + h, y1 + k3, y2 + l3)
+
+        y1 = y1 + (k1 + 2*k2 + 2*k3 + k4) / 6
+        y2 = y2 + (l1 + 2*l2 + 2*l3 + l4) / 6
+        x = x + h
+    FinPara
+Fin
+```
 
   <h3>🔹 Ejemplo en Java con Runge-Kutta (Sistema 2x2)</h3>
   <pre><code>public class SistemaEDOs {
@@ -127,6 +219,10 @@ y2' = f2(x, y1, y2)</code></pre>
         return -y1; // Ejemplo: y2' = -y1 → y1'' = -y1 (oscilador armónico)
     }
 }</code></pre>
+
+**Casos de prueba**
+![alt text](image-2.png)
+
 </div>
 
 <h2>✅ Conclusión</h2>
