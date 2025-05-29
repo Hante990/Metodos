@@ -66,6 +66,7 @@ El método de bisección es una técnica iterativa que permite encontrar una ra�
 4. Repetir hasta que el error sea menor al permitido.
 
 **Pseudocódigo:**
+
 Algoritmo MétodoDeBisección
     Inicio
         Intentar
