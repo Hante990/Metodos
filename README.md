@@ -17,7 +17,6 @@ Los métodos numéricos son técnicas que permiten encontrar soluciones aproxima
 Este repositorio está organizado por **ramas** (branches) correspondientes a cada uno de los temas principales del curso. Cada rama contiene ejercicios resueltos, explicaciones y código documentado.
 
 - `main` - Rama principal del proyecto. Contiene esta documentación general.
-- `tema-1-introduccion` - Tema 1: Introducción a los Métodos Numéricos.
 - `tema-2-solucion-ecuaciones` - Tema 2: Métodos de Solución de Ecuaciones.
 - `tema-3-sistemas-ecuaciones` - Tema 3: Métodos de Solución de Sistemas de Ecuaciones.
 - `tema-4-diferenciacion-integracion` - Tema 4: Diferenciación e Integración Numérica.
